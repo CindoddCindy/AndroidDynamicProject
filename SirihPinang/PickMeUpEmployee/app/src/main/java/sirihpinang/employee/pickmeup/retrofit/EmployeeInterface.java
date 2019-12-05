@@ -1,6 +1,7 @@
 package sirihpinang.employee.pickmeup.retrofit;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -8,7 +9,7 @@ import sirihpinang.employee.pickmeup.pojo.EmployeeRegisterRespon;
 
 public interface EmployeeInterface {
     @FormUrlEncoded
-    @POST("localhost:8081/employee")
+    @POST("/employee")
     Call<EmployeeRegisterRespon> EmployeeRegister(@Field("name") String name,
                                             @Field("email") String email,
                                             @Field("password") String password,

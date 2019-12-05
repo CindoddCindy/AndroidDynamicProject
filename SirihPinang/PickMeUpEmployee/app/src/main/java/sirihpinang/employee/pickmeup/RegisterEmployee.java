@@ -1,5 +1,6 @@
 package sirihpinang.employee.pickmeup;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -39,8 +40,10 @@ public class RegisterEmployee extends AppCompatActivity {
         btn_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // validate();
-                RegisterEmployee();
+               if (validate()) {
+
+                   RegisterEmployee();
+               }
 
 
             }
@@ -110,7 +113,7 @@ public class RegisterEmployee extends AppCompatActivity {
 
 
 
-        EmployeeInterface employeeInterface  = EmployeeUrl.getClient().create(EmployeeInterface.class);
+        EmployeeInterface employeeInterface  = EmployeeUrl.getRetrofit().create(EmployeeInterface.class);
         //User user = new User(name, email, password);
 
 
@@ -118,19 +121,23 @@ public class RegisterEmployee extends AppCompatActivity {
 
         userCall.enqueue(new Callback<EmployeeRegisterRespon>() {
             @Override
-            public void onResponse(Call<EmployeeRegisterRespon> call, Response<EmployeeRegisterRespon> response) {
+            public void onResponse(@Nullable Call<EmployeeRegisterRespon> call,@Nullable Response<EmployeeRegisterRespon> response) {
                 //hidepDialog();
                 //onSignupSuccess();
-                Log.d("onResponse", "" + response.body().getStatus());//.getMessage());
+                if (response.body() != null) {
+                    Log.d("onResponse", "" + response.body().getStatus());//.getMessage());
+                }
 
 
-                if(response.body().getStatus()=="ok") {
-                    Intent intent = new Intent(RegisterEmployee.this,UserProfile.class);
-                    startActivity(intent);
+                if (response.body() != null) {
+                    if(response.body().getStatus()=="ok") {
+                        Intent intent = new Intent(RegisterEmployee.this,UserProfile.class);
+                        startActivity(intent);
 
-                    finish();
-                }else {
-                    //Toast.makeText(SignupActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "" + response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
