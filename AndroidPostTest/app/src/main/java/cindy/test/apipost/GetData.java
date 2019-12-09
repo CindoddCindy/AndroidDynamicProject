@@ -1,14 +1,16 @@
 package cindy.test.apipost;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import cindy.test.apipost.adapter.AdapterGetData;
 import cindy.test.apipost.pojo.Datum;
@@ -22,9 +24,9 @@ import retrofit2.Response;
 public class GetData extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    AdapterGetData adapterGetData;// nearbyFacilitiesAdapter ;
+    AdapterGetData adapterGetData;
     //String datumList  = new String();
-    List<Datum> datumList = new ArrayList<>();
+    ArrayList<Datum> datumList = new ArrayList<>();
 
     RetrofitUrl retrofitUrl ;
     Context context;
@@ -33,12 +35,12 @@ public class GetData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_data);
-
-        recyclerView = findViewById(R.id.get_data_rv);
-        // nearbyFacilitiesAdapter = new NearbyFacilitiesAdapter(NearbyFacilitiesActivity.this,dataNearbies);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(GetData.this);
-        recyclerView.setLayoutManager(linearLayoutManager);
         //
+        recyclerView = findViewById(R.id.get_data_rv);
+       LinearLayoutManager layoutManager = new LinearLayoutManager(GetData.this);
+        recyclerView.setLayoutManager(layoutManager);
+
+
 
         getDataInsert();
     }
@@ -50,35 +52,25 @@ public class GetData extends AppCompatActivity {
         detailResponseCalls.enqueue(new Callback<GetPostRespon>() {
             @Override
             public void onResponse(Call<GetPostRespon> call, Response<GetPostRespon> response) {
-                //PortDetailResponse portDetailResponse = response.body();
                 GetPostRespon getPostRespon = response.body();
-                //PortDetailData portDetailData=portDetailResponse.getData();
-
-              //  Datum datum = (Datum) getPostRespon.getData();
-
 
                 if (response.isSuccessful()){
-                    //dataNearbies= portDetailData.getDataNearby();
-                    //datumList=datum.getData();
-                    adapterGetData = new AdapterGetData(GetData.this, datumList);
+
+                    adapterGetData = new AdapterGetData(datumList);
                     recyclerView.setAdapter(adapterGetData);
+                   // adapterGetData.notifyDataSetChanged();
 
 
                 }
-
-
             }
 
             @Override
-            public void onFailure(Call<GetPostRespon> call, Throwable t) {
-
+            public void onFailure(Call<GetPostRespon> call,@Nullable Throwable t) {
+                assert t != null;
+                Log.e(GetData.class.getSimpleName(), Objects.requireNonNull(t.getLocalizedMessage()));
+                t.printStackTrace();
             }
         });
-
-
-
-
-
 
     }
 

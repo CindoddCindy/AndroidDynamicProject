@@ -13,11 +13,11 @@ public interface RetrofitInter {
     @FormUrlEncoded
     @POST("/insert")
     Call<InsertPostRespon> insertPost(@Field("name") String name,
-                                            @Field("email") String email,
-                                            @Field("password") String password,
-                                            @Field("data") String data);
+                                      @Field("email") String email,
+                                      @Field("password") String password,
+                                      @Field("data") String data);
 
-    @GET("/insert/{id}")
+    @GET("/insert?page=1&limit=10")
     Call<GetPostRespon> getDataInsert();
 
 

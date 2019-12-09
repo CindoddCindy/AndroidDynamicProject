@@ -1,6 +1,5 @@
 package cindy.test.apipost.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +15,12 @@ import cindy.test.apipost.pojo.Datum;
 
 public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataChild> {
 
-    private Context context;
-    private List<Datum> insertlist;
+    private List<Datum> insertList;
     //private List<PortDetailData> listportDetailData;
 
 
-    public AdapterGetData(Context context, List<Datum> insertlist){
-        this.context=context;
-        this.insertlist=insertlist;
+    public AdapterGetData(List<Datum> insertList){
+        this.insertList = insertList;
         // this.listportDetailData=listportDetailData;
         // layoutInflater=LayoutInflater.from(context);
     }
@@ -32,17 +29,13 @@ public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataC
     @Override
     public GetDataChild onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.getdataadapter, parent, false);
-        GetDataChild mViewHolder = new GetDataChild(mView);
 
-        // KucingChildAdapter viewHolder = new KucingChildAdapter(layoutInflater.inflate(R.layout.meow_adapter, viewGroup, false));
-        return mViewHolder;
-
-        //return null;
+        return new GetDataChild(mView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GetDataChild holder, int position) {
-        final  Datum datum = insertlist.get(position);
+        final  Datum datum = insertList.get(position);
 
         holder.textView_getData.setText(datum.getData());//.getPortName());
         // holder.textView_ambil_port_id.setText(listPortData.getIdPort());
@@ -52,15 +45,15 @@ public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataC
 
     @Override
     public int getItemCount() {
-        return insertlist.size();
+        return insertList.size();
         //return 0;
     }
 
-    public class GetDataChild extends RecyclerView.ViewHolder{
+    class GetDataChild extends RecyclerView.ViewHolder{
 
         TextView textView_getData;
 
-        public GetDataChild(@NonNull View itemView) {
+        GetDataChild(@NonNull View itemView) {
             super(itemView);
             textView_getData=itemView.findViewById(R.id.tv_get_data);
         }
