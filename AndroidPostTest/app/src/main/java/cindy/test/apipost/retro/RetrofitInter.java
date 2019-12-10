@@ -1,6 +1,6 @@
 package cindy.test.apipost.retro;
 
-import cindy.test.apipost.pojo.GetPostRespon;
+import cindy.test.apipost.pojo.GetPostResponData;
 import cindy.test.apipost.pojo.InsertPostRespon;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -18,7 +18,7 @@ public interface RetrofitInter {
                                       @Field("data") String data);
 
     @GET("/insert?page=1&limit=10")
-    Call<GetPostRespon> getDataInsert();
+    Call<GetPostResponData> getDataInsert();
 
 
 
