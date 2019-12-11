@@ -1,16 +1,21 @@
 package cindy.test.apipost.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cindy.test.apipost.EditDelete;
 import cindy.test.apipost.GetData;
 import cindy.test.apipost.R;
 import cindy.test.apipost.pojo.Datum;
@@ -20,12 +25,13 @@ public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataC
     private List<Datum> insertList;
     //private List<PortDetailData> listportDetailData;
 
-    private String context;
+
+    public  Context context;
 
 
     public AdapterGetData(GetData getData, List<Datum> insertList){
         this.insertList = insertList;
-        //this.context=context;
+       // this.context=context;
         // this.listportDetailData=listportDetailData;
         // layoutInflater=LayoutInflater.from(context);
     }
@@ -52,6 +58,21 @@ public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataC
         holder.textView_data.setText(datum.getData());
         holder.textView_created.setText(datum.getCreatedAt());
         holder.textView_updated.setText(datum.getUpdatedAt());
+        holder.textView_id.setText(String.valueOf(datum.getId()));
+        holder.cardView_klik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(),EditDelete.class);
+                intent.putExtra("nama",datum.getName());
+                intent.putExtra("email", datum.getEmail());
+                intent.putExtra("password", datum.getPassword());
+                intent.putExtra("data", datum.getData());
+                intent.putExtra("id",datum.getId());
+                v.getContext().startActivity(intent);
+
+            }
+        });
         //.getPortName());
         // holder.textView_ambil_port_id.setText(listPortData.getIdPort());
 
@@ -66,7 +87,10 @@ public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataC
 
     class GetDataChild extends RecyclerView.ViewHolder{
 
-        TextView textView_nama, textView_email, textView_password, textView_data,textView_created, textView_updated;
+        public TextView textView_nama, textView_email, textView_password, textView_data,textView_created, textView_updated;
+        public CardView cardView_klik;
+        public  TextView textView_id;
+
 
         GetDataChild(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +100,8 @@ public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataC
             textView_data=itemView.findViewById(R.id.tv_get_dataa);
             textView_created=itemView.findViewById(R.id.tv_get_create);
             textView_updated=itemView.findViewById(R.id.tv_get_update);
-        }
+            cardView_klik=itemView.findViewById(R.id.cv_id_klik);
+            textView_id=itemView.findViewById(R.id.tv_get_id);
+            }
     }
 }

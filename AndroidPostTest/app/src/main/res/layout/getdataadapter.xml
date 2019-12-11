@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_id_klik"
             app:cardCornerRadius="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -16,12 +17,15 @@
             android:layout_margin="5dp"
             app:cardUseCompatPadding="true">
             <LinearLayout
+                android:background="#ECE7BB"
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#020F52"
                     android:id="@+id/tv_get_nama"
                     android:textSize="10dp"
                     android:layout_margin="5dp"
@@ -31,6 +35,8 @@
 
                 </TextView>
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#020F52"
                     android:id="@+id/tv_get_email"
                     android:textSize="10dp"
                     android:layout_margin="5dp"
@@ -40,6 +46,8 @@
 
                 </TextView>
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#020F52"
                     android:id="@+id/tv_get_password"
                     android:textSize="10dp"
                     android:layout_margin="5dp"
@@ -49,6 +57,8 @@
 
                 </TextView>
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#020F52"
                     android:id="@+id/tv_get_dataa"
                     android:textSize="10dp"
                     android:layout_margin="5dp"
@@ -86,6 +96,18 @@
                     android:layout_height="wrap_content">
 
                 </TextView>
+
+                <TextView
+                    android:id="@+id/tv_get_id"
+                    android:textSize="10dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+
 
 
 
