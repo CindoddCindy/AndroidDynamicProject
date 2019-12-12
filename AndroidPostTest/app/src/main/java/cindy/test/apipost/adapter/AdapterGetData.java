@@ -2,6 +2,7 @@ package cindy.test.apipost.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,13 +64,16 @@ public class AdapterGetData extends RecyclerView.Adapter<AdapterGetData.GetDataC
             @Override
             public void onClick(View v) {
 
+
                 Intent intent = new Intent(v.getContext(),EditDelete.class);
                 intent.putExtra("nama",datum.getName());
                 intent.putExtra("email", datum.getEmail());
                 intent.putExtra("password", datum.getPassword());
                 intent.putExtra("data", datum.getData());
-                intent.putExtra("id",datum.getId());
+                intent.putExtra("id", datum.getId());
                 v.getContext().startActivity(intent);
+
+
 
             }
         });

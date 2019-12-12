@@ -36,7 +36,7 @@ public class EditDelete extends AppCompatActivity {
         textView_password=findViewById(R.id.tv_password);
         textView_data=findViewById(R.id.tv_data);
 
-        textView_id=findViewById(R.id.tv_get_id);
+        textView_id=findViewById(R.id.tv_id_edt_dlt);
 
         btn_hapus=findViewById(R.id.btn_delete);
 
@@ -48,20 +48,28 @@ public class EditDelete extends AppCompatActivity {
             }
         });
 
+        //final long id = Long.valueOf("id");
+
         textView_nama.setText("nama: "+getIntent().getStringExtra("nama"));
         textView_email.setText("email" + getIntent().getStringExtra("email"));
         textView_password.setText("password" + getIntent().getStringExtra("password"));
         textView_data.setText("data" + getIntent().getStringExtra("data"));
-        textView_id.setText("id" + getIntent().getStringExtra("id"));
+       // textView_id.setText(Long.valueOf(String.format("id%d", getIntent().getLongExtra("id"))));
+        textView_id.setText(""+ getIntent().getLongExtra("id", 0));
+
+
+        // Bundle bdl=getIntent().getExtras();
+
 
 
     }
 
     public void deleteItem(){
+       // Long id = Long.valueOf(textView_id.getText().toString());
 
 
         RetrofitInter retrofitInter = RetrofitUrl.getRetrofit().create(RetrofitInter.class);
-        Call<DeleteInsertRespon> getPostResponCall = retrofitInter.deleteKontak(textView_id.getText().toString());//.getNearbyFacilities(portid);
+        Call<DeleteInsertRespon> getPostResponCall = retrofitInter.deteleInsert(Long.parseLong(textView_id.getText().toString()));//.getNearbyFacilities(portid);
         getPostResponCall.enqueue(new Callback<DeleteInsertRespon>() {
             @Override
             public void onResponse(Call<DeleteInsertRespon> call, Response<DeleteInsertRespon> response) {

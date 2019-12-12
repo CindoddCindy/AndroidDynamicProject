@@ -25,7 +25,7 @@ public class RetrofitUrl {
 //add logging
         okHttpClient.addInterceptor(httpLoggingInterceptor).build();
 
-        String BASE_URL = "http://192.168.1.43:8000";
+        String BASE_URL = "http://192.168.1.18:8000";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient.build())

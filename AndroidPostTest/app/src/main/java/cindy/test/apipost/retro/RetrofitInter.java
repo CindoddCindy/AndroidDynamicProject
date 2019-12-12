@@ -4,12 +4,14 @@ import cindy.test.apipost.pojo.DeleteInsertRespon;
 import cindy.test.apipost.pojo.GetPostResponData;
 import cindy.test.apipost.pojo.InsertPostRespon;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface RetrofitInter {
 
@@ -32,10 +34,15 @@ public interface RetrofitInter {
                                      @Field("nomor") String nomor);
 
 
-     */
+
     @FormUrlEncoded
-    @HTTP(method = "DELETE", path = "kontak", hasBody = true)
-    Call<DeleteInsertRespon> deleteKontak(@Field("id") String id);
+    @HTTP(method = "delete", path = "/insert", hasBody = true)
+    Call<DeleteInsertRespon> deleteKontak(@Field("id") long id);
+
+     */
+
+    @DELETE("/insert/{id}")
+    Call<DeleteInsertRespon> deteleInsert(@Path("id") long id);
 
 
 
