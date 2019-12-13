@@ -40,10 +40,13 @@ public class RegisterEmployee extends AppCompatActivity {
         btn_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (validate()) {
+               //if (validate()) {
 
-                   RegisterEmployee();
-               }
+                   //RegisterEmployee();
+               //}
+
+                Intent intent = new Intent(RegisterEmployee.this, MenuActivity.class);
+                startActivity(intent);
 
 
             }
