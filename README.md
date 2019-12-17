@@ -1,2 +1,2 @@
-# AndroidMeongMeong
-AndroidProject Gak Meong Meong
+project sementara belum di lanjutkan 
+branch nya masih ngaco
